@@ -1,0 +1,70 @@
+﻿@model IEnumerable<VendKata.Models.Product>
+
+@{
+    ViewData["Title"] = "Select a Tasty Treat!";
+}
+
+<h1>Select a Tasty Treat!</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>                    
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                ------
+            </td>
+            <td>
+                    <a class="btn btn-primary" href="@Url.Action("SelectProduct", "ProductsController", new{ parameter = item.Name})">Select</a>
+            </td>
+        </tr>}
+    </tbody>
+</table>
+<div>
+
+</div>
+
+@*for the sake of expediency, we'll just use a simple interface to simulate coid-deposit actions for now. These can be replaced with image-buttons later*@
+@*using images of different coins to simulate entry of each*@
+COIN DEPOSITS
+<table border="1">
+    <thead>
+        <tr>
+            <td><a class="btn btn-primary" href="@Url.Action("AddCoin", "Products", new{ parameter = 1})">Deposit 1p coin</a></td>
+            <td><a class="btn btn-primary" href="@Url.Action("AddCoin", "ProductsController", new{ parameter = 2})">Deposit 2p coin</a></td>
+            <td><a class="btn btn-primary" href="@Url.Action("AddCoin", "ProductsController", new{ parameter = 5})">Deposit 5p coin</a></td>
+            <td><a class="btn btn-primary" href="@Url.Action("AddCoin", "ProductsController", new{ parameter = 10})">Deposit 10p coin</a></td>
+        </tr>
+        <tr>
+            <td><a class="btn btn-primary" href="@Url.Action("AddCoin", "ProductsController", new{ parameter = 20})">Deposit 20p coin</a></td>
+            <td><a class="btn btn-primary" href="@Url.Action("AddCoin", "ProductsController", new{ parameter = 50})">Deposit 50p coin</a></td>
+            <td><a class="btn btn-primary" href="@Url.Action("AddCoin", "ProductsController", new{ parameter = 100})">Deposit £1 coin</a></td>
+            <td><a class="btn btn-primary" href="@Url.Action("AddCoin", "ProductsController", new{ parameter = 200})">Deposit £2 coin</a></td>
+
+        </tr>
+    </thead>
+</table>
+
+
+<div id="DisplayContainer">
+<h2>
+    @ViewBag.DisplayMessage
+</h2>
+</div>
